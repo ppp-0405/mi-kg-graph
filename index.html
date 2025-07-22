@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,32 +15,63 @@
   <h2>MI 医学信息学知识图谱</h2>
   <div id="cy"></div>
   <script>
-    fetch('mi_kg_cytoscape.json')
-      .then(res => res.json())
-      .then(data => {
-        cytoscape({
-          container: document.getElementById('cy'),
-          elements: data,
-          style: [
-            { selector: 'node', style: {
-                'label': 'data(label)',
-                'background-color': '#0074D9',
-                'color': '#fff',
-                'text-valign': 'center',
-                'text-halign': 'center',
-                'font-size': '10px'
-            }},
-            { selector: 'edge', style: {
-                'label': 'data(label)',
-                'width': 2,
-                'line-color': '#aaa',
-                'target-arrow-color': '#aaa',
-                'target-arrow-shape': 'triangle'
-            }}
-          ],
-          layout: { name: 'cose', padding: 10 }
-        });
-      });
+    const data =
+[
+  {
+    "data": {
+      "id": "MI",
+      "label": "医学信息学"
+    }
+  },
+  {
+    "data": {
+      "id": "MI-04",
+      "label": "人工智能与机器学习的应用"
+    }
+  },
+  {
+    "data": {
+      "id": "MI-045",
+      "label": "知识图谱"
+    }
+  },
+  {
+    "data": {
+      "source": "MI-04",
+      "target": "MI",
+      "label": "subClassOf"
+    }
+  },
+  {
+    "data": {
+      "source": "MI-045",
+      "target": "MI-04",
+      "label": "subClassOf"
+    }
+  }
+]
+    cytoscape({
+      container: document.getElementById('cy'),
+      elements: data,
+      style: [
+        { selector: 'node', style: {
+            'label': 'data(label)',
+            'background-color': '#0074D9',
+            'color': '#fff',
+            'text-valign': 'center',
+            'text-halign': 'center',
+            'font-size': '10px'
+        }},
+        { selector: 'edge', style: {
+            'label': 'data(label)',
+            'width': 2,
+            'line-color': '#aaa',
+            'target-arrow-color': '#aaa',
+            'target-arrow-shape': 'triangle'
+        }}
+      ],
+      layout: { name: 'cose', padding: 10 }
+    });
   </script>
 </body>
 </html>
